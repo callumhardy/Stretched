@@ -5,7 +5,7 @@
  *
  * Author: Callum Hardy <callum@ed.com.au>
  *
- * Version 1.0
+ * Version 1.0.1
  */
 
 /**
@@ -255,12 +255,37 @@ if (!Object.keys) {
 					//	Now we need to alter the src of the image by appending a unique GET var
 					$image.attr( "src", imageSrc );
 
-					//	Note: this has been removed from the above line because it was causing some weird bugs in IE 9
+					//	TODO/Note: this has been removed from the above line because it was causing some weird bugs in IE 9
 					//	This is to force IE to stop caching images and run the .load() jQuery function 
 					//	imageSrc + "/?" + new Date().getTime()
+					
+					//	If the image has '0' width, it is most likely not loaded yet
+					if( $image.width() === 0 ) {
 
-					//	After the image loads we are ready to manipulate it
-					$image.load(function(){
+						//	Wait for the image to load before manipulating it
+						$image.load(function(){
+
+							//	Save images jQuery object to the config
+							//	Note: we do this after the image has loaded so that we have its correct dimensions
+							elements.image.$ = $(this);
+
+							//	Save the naturalWidth and naturalHeight
+							//	Note: this attribute already exists in jQuery but we must make it manually to support, you probably guessed it... IE8 and below
+							elements.image.naturalWidth = elements.image.$.width();
+							elements.image.naturalHeight = elements.image.$.height();
+							elements.image.ratio = elements.image.naturalWidth / elements.image.naturalHeight;
+
+							//	Create the stretched object
+							var stretched = Object.create( Stretched );
+
+							//	Run the Stretched Object
+							stretched.init( config, elements );
+
+						});/* $image.load */
+
+					//	Else the image has a width and is most likely loaded already
+					//	We can begin manipulating it now
+					} else {
 
 						//	Save images jQuery object to the config
 						//	Note: we do this after the image has loaded so that we have its correct dimensions
@@ -277,8 +302,7 @@ if (!Object.keys) {
 
 						//	Run the Stretched Object
 						stretched.init( config, elements );
-
-					});/* $image.load */
+					}
 
 				});/* $images.each */
 
@@ -319,6 +343,19 @@ if (!Object.keys) {
 
 			//	Run the initial stretching
 			self.runStretch();
+
+			console.log( elements.container.$.is(":visible") );
+			console.log( elements.stretcher.$.is(":visible") );
+			console.log( elements.image.$.is(":visible") );
+
+			setTimeout( function() {
+
+				//console.log(elements);
+				//console.log("========");
+
+				//console.log("ATTEMPTED STRETCH");
+
+			}, 1000);
 
 			//	Setup the bind events
 			self.bindEvents();
@@ -373,7 +410,9 @@ if (!Object.keys) {
 			self.calculatePadding( elem.stretcher, conf.stretcherPadding );
 
 			//	Size stretcher
-			self.stretchToFullWidth( elem.stretcher, elem.container );
+			var stretcherInfo = self.stretchToFullWidth( elem.stretcher, elem.container );
+
+			console.log("stretcher: "+stretcherInfo);
 
 			//	Cover
 			if( conf.backgroundSize === 'cover' ) {
@@ -405,6 +444,9 @@ if (!Object.keys) {
 
 			//	Callback: after
 			conf.after( elem.container, elem.image );
+
+			console.log(self.elements);
+			console.log("========");
 		},
 
 		/**
@@ -689,6 +731,9 @@ if (!Object.keys) {
 			targetElement.innerHeight = $targetElem.innerHeight() - element.padding.top - element.padding.bottom;
 			targetElement.innerRatio = targetElement.innerWidth / targetElement.innerHeight;
 
+			if( targetElement.innerWidth === 0 ) return "Error, targetElement.innerWidth === 0";
+			if( targetElement.innerHeight === 0 ) return "Error, targetElement.innerHeight === 0";
+
 			//	Stretch the element to full width and height of the targetElem
 			$elem.css({
 				position: 'absolute',
@@ -709,6 +754,8 @@ if (!Object.keys) {
 				});
 
 			}
+
+			return "stretchToFullWidth Complete.";
 
 		}
 
