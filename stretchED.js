@@ -118,8 +118,7 @@ if (!Object.keys) {
 		 * 
 		 * @type {Object} Set initial CSS parameters for the stretcher element
 		 */
-		stretcher: {
-		},
+		stretcher: {},
 
 		/**
 		 * breakpoints
@@ -139,8 +138,7 @@ if (!Object.keys) {
 				}
 			}
 		 */
-		breakpoints: {
-		},
+		breakpoints: {},
 
 		/**
 		 * before
@@ -214,16 +212,6 @@ if (!Object.keys) {
 
 				//	Append the stretcher to the container
 				$container.append( $stretcher );
-
-				//	Setup stretcher element
-				$stretcher.css({
-					zIndex: -1,
-					overflow: 'hidden',
-					maxWidth: 'none',
-					maxHeight: 'none',
-					width: 'auto',
-					height: 'auto'
-				});
 
 				//	Save stretchers jQuery object to the config
 				elements.stretcher.$ = $stretcher;
@@ -344,19 +332,6 @@ if (!Object.keys) {
 			//	Run the initial stretching
 			self.runStretch();
 
-			console.log( elements.container.$.is(":visible") );
-			console.log( elements.stretcher.$.is(":visible") );
-			console.log( elements.image.$.is(":visible") );
-
-			setTimeout( function() {
-
-				//console.log(elements);
-				//console.log("========");
-
-				//console.log("ATTEMPTED STRETCH");
-
-			}, 1000);
-
 			//	Setup the bind events
 			self.bindEvents();
 
@@ -368,7 +343,8 @@ if (!Object.keys) {
 				elem = self.elements,
 				conf = self.config,
 				breakpoint = false,
-				windowWidth = $window.innerWidth();
+				windowWidth = $window.innerWidth(),
+				activeBreakpoint = 999999;
 
 			//	jQuery elements
 			$container = elem.container.$;
@@ -381,8 +357,12 @@ if (!Object.keys) {
 				//	Loop through all breakpoints found in the config
 				$.each( conf.breakpoints, function( breakpoint, breakpoint_config ) {
 
+					breakpoint = parseInt(breakpoint,10);
+
 					//	Does the breakpoint need to activate
-					if( breakpoint > windowWidth ) {
+					if( breakpoint > windowWidth && breakpoint < activeBreakpoint ) {
+
+						activeBreakpoint = breakpoint;
 
 						//	Override the config with the breakpoints config
 						conf = $.extend( {}, conf, breakpoint_config );
@@ -391,6 +371,18 @@ if (!Object.keys) {
 				});
 
 			}
+
+			elem.stretcher.$.attr('style','');
+
+			//	Setup stretcher element
+			elem.stretcher.$.css({
+				zIndex: -1,
+				overflow: 'hidden',
+				maxWidth: '',
+				maxHeight: '',
+				width: 'auto',
+				height: 'auto'
+			});
 
 			//	config CSS
 			if( typeof conf.stretcher === 'object' ) {
@@ -410,7 +402,7 @@ if (!Object.keys) {
 			self.calculatePadding( elem.stretcher, conf.stretcherPadding );
 
 			//	Size stretcher
-			var stretcherInfo = self.stretchToFullWidth( elem.stretcher, elem.container );
+			var stretcherInfo = self.stretchToFill( elem.stretcher, elem.container );
 
 			console.log("stretcher: "+stretcherInfo);
 
@@ -445,8 +437,6 @@ if (!Object.keys) {
 			//	Callback: after
 			conf.after( elem.container, elem.image );
 
-			console.log(self.elements);
-			console.log("========");
 		},
 
 		/**
@@ -474,8 +464,6 @@ if (!Object.keys) {
 
 			//	Trigger Event
 			self.elements.container.$.on( 'stretch', function() {
-
-				console.log('stretch');
 
 				self.runStretch();
 
@@ -719,7 +707,7 @@ if (!Object.keys) {
 
 		},*/
 
-		stretchToFullWidth: function( element, targetElement ) {
+		stretchToFill: function( element, targetElement ) {
 
 			//	Get jQuery elements
 			$elem = element.$;
@@ -730,9 +718,6 @@ if (!Object.keys) {
 			targetElement.innerWidth = $targetElem.innerWidth() - element.padding.right - element.padding.left;
 			targetElement.innerHeight = $targetElem.innerHeight() - element.padding.top - element.padding.bottom;
 			targetElement.innerRatio = targetElement.innerWidth / targetElement.innerHeight;
-
-			if( targetElement.innerWidth === 0 ) return "Error, targetElement.innerWidth === 0";
-			if( targetElement.innerHeight === 0 ) return "Error, targetElement.innerHeight === 0";
 
 			//	Stretch the element to full width and height of the targetElem
 			$elem.css({
@@ -754,9 +739,6 @@ if (!Object.keys) {
 				});
 
 			}
-
-			return "stretchToFullWidth Complete.";
-
 		}
 
 	};
