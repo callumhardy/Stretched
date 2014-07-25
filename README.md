@@ -21,7 +21,7 @@ Or if you are using Wordpress, which already includes jQuery:
 
 ## Usage
 
-By default the only thing that stretchED needs from you operate, is to be given the jQuery object of an element in the DOM. Any `<img>` tags that stretchED finds in this element will be stretched to cover the entire background of the element.
+By default the only thing that stretchED needs from you operate, is to be given the jQuery object of an element or elements in the DOM. Any `<img>` tags that stretchED finds in the element(s) will be stretched to cover the entire background of the element.
 
 The effect is similar to the CSS property `background-size: cover`
 
