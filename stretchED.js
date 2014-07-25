@@ -393,18 +393,6 @@ if (!Object.keys) {
 					zIndex: 0
 				});
 
-			//	config CSS
-			if( typeof conf.container === 'object' ) {
-
-				$.each( conf.container, function( key, value ) {
-
-					if( key !== 'padding' )
-						$container.css( key, value );
-
-				});
-
-			}
-
 			//	Reset the stretcher inline styles
 			//	this helps the breakpoint property function like most people would expect
 			$stretcher.attr('style','');
@@ -418,18 +406,6 @@ if (!Object.keys) {
 				width: 'auto',
 				height: 'auto'
 			});
-
-			//	config CSS
-			if( typeof conf.stretcher === 'object' ) {
-
-				$.each( conf.stretcher, function( key, value ) {
-
-					if( key !== 'padding' )
-						$stretcher.css( key, value );
-
-				});
-
-			}
 
 			//	Set the stretcher padding
 			self.calculatePadding( elem.stretcher, conf.container.padding );
@@ -466,6 +442,30 @@ if (!Object.keys) {
 			$image.css({
 				visibility: 'visible'
 			});
+
+			//	config CSS for the container
+			if( typeof conf.container === 'object' ) {
+
+				$.each( conf.container, function( key, value ) {
+
+					if( key !== 'padding' )
+						$container.css( key, value );
+
+				});
+
+			}
+
+			//	config CSS for the stretcher
+			if( typeof conf.stretcher === 'object' ) {
+
+				$.each( conf.stretcher, function( key, value ) {
+
+					if( key !== 'padding' )
+						$stretcher.css( key, value );
+
+				});
+
+			}
 
 			//	Callback: after
 			conf.after( elem );

@@ -151,25 +151,23 @@ We can set the container's padding to only cover a certain amount of its backgro
 		}
 	});
 
-### Setting a max height for the stretched Image
+### Setting a specific height for the stretched area
 
-Changing the padding of elements like the example above is handy, but it will not quite help with this task. Instead for this we can assign a `maxHeight` to the 'stretcher' element. This will only allow `100px` of the image to be visible vertically. The same can be done for `maxWidth`.
+Changing the padding of elements is handy. In the previous example, giving the container a padding of `50%` on the left effectively forces the stretcher element to become half the width of the container element. 
+
+However if you required the stretcher element to be a fixed width or height, you can assign the stretcher some CSS.
+
+
 
 	element.stretchED({
 		stretcher: {
-			maxHeight: 100
+			width: 100
 		}
 	});
 
-Or, you could apply CSS to the stretcher element using a callback function
-
-	element.stretchED({
-		after: function(elements){
-			elements.stretcher.$.css({
-				height: 100
-			});
-		}
-	});
+**Note:** Some caution should be taken as some CSS settings may stop the stretcher from displaying properly. Some CSS properties to avoid are:
++ zIndex
++ position
 
 ### Adding a breakpoint that changes the backgroundSize
 
