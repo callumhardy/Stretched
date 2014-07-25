@@ -158,20 +158,19 @@ if (!Object.keys) {
 		 *
 		 * A callback that fires before the image has begun stretching
 		 * 
-		 * @param  {Object} container The container element that the image will be stretched into
-		 * @param  {Object} image     The image that will be stretched
+		 * @param  {Object} elements An oject of the DOM elements that the stretcher has to work with.
 		 */
-		before: function( container, image ){},
+		before: function( elements ){},
 
 		/**
 		 * after
 		 *
 		 * A callback that fires after the image has finished being stretched
 		 * 
-		 * @param  {Object} container The container element that the image has been stretched into
+		 * @param  {Object} elements The container element that the image has been stretched into
 		 * @param  {Object} image     The image that has just been stretched
 		 */
-		after: function( container, image ){}
+		after: function( elements ){}
 
 	};/* defaultArgs */
 
@@ -362,7 +361,7 @@ if (!Object.keys) {
 			$image = elem.image.$;
 
 			//	Callback: before
-			conf.before( elem.container, elem.image );
+			conf.before( elem );
 
 			//	Are there any breakpoints set
 			if( Object.keys(conf.breakpoints).length > 0 ) {
@@ -470,7 +469,7 @@ if (!Object.keys) {
 			});
 
 			//	Callback: after
-			conf.after( elem.container, elem.image );
+			conf.after( elem );
 
 		},
 
