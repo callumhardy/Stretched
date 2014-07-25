@@ -166,8 +166,7 @@ Or, you could apply CSS to the stretcher element using a callback function
 	element.stretchED({
 		after: function(elements){
 			elements.stretcher.$.css({
-				height: 100,
-				width: 111
+				height: 100
 			});
 		}
 	});
