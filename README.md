@@ -101,7 +101,7 @@ There are many option available when configuring the plugin args.
 
 > + **padding** (*int/string*) CSS style padding can be applied to the container element for both `backgroundSize: 'contain'` and `backgroundSize: 'cover'`.
     + Both `px` and `%` can be passed in the traditional CSS format, eg: `'25% 120px'` or `'15%'`.
-    + **Note:** The effect of padding in the container element is faked by resizing the image inside it. It will not apply actual CSS padding to the container element
+    + **Note:** The effect of padding in the container element is faked by resizing the stretcher element inside it. It will not apply actual CSS padding to the container element
 
 **breakpoints**
 
