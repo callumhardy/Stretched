@@ -164,7 +164,7 @@ Below we are setting the `backgroundSize` to not not use the default `cover`, bu
 		}
 	});
 
-You may alter any other of the configurable parameters listed here inside a breakpoint. Even another breakpoint... but that would just be crazy sauce! pffffft! breakpoinception indeed!
+You may alter any of the configurable parameters listed here inside a breakpoint. Even another breakpoint... but that would just be crazy sauce! pffffft! breakpoinception indeed!
 
 
 ## Dependencies
