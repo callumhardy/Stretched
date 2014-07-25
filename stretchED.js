@@ -187,6 +187,9 @@ if (!Object.keys) {
 		//	Merge/Overwrite the default and config arguments
 		var config = $.extend( {}, defaultArgs, configArgs );
 
+		// TODO: add option to pass element with document.getElementById()
+		//alert( this instanceof jQuery );
+
 		//	Get the containers
 		$containers = $(this);
 

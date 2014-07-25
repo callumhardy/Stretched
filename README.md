@@ -19,9 +19,9 @@ Or if you are using Wordpress:
 
 ## Usage
 
-	*jQuerySelection*.stretchED(*args*);
+	element.stretchED(args);
 
-**jQuerySelection**
+**element**
 
 > (*required*)(*jQuery object*) Images found by the plugin inside this jQuery Object will be stretched.
 
@@ -29,26 +29,38 @@ Or if you are using Wordpress:
 
 > (*optional*)(*object*) A JavaScript object of parameters that allows you to configure the actions of the `stretchED()` jQuery function
 
-**args parameters**
+### args parameters
 
 There are many option available when configuring the plugin args.
 
-*backgroundSize*
+**backgroundSize**
 
 > (*string*) Acts similarly to the 'cover' and 'contain' CSS `background-size` property. (*default*) `cover`
 
-*imageSelector*
+**imageSelector**
 
 > (*string*) By default this is set to `img`. This means the stretcher will stretch all image tags found in the container element. If you only need to effect certain images you can pass a CSS selector here single out specific image tags to stretch.
 
-*alignX*
+**alignX**
 
-> (*string*) Choose an alignment for the image's X axis. 
-> Avalible options are:
+> (*string*) Choose an alignment for the image's X axis. Available options are:
 - 'left'
 - 'right'
 - 'center' (*default*)
 
+**alignY**
+
+> (*string*) Choose an alignment for the image's Y axis. Available options are:
+- 'top'
+- 'bottom'
+- 'center' (*default*)
+
+**stretcher**
+
+> (*object*) Set initial CSS parameters for the stretcher element
+- **padding** 
+-- (*int/string*) CSS style padding can be applied to the image only when `backgroundSize: 'contain'` is active.
+>> Both `px` and `%` can be passed in the traditional CSS format, eg: '30px 15% 50px' or '50px'
 
 
 ### Default
