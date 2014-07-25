@@ -212,12 +212,7 @@ Because the `container` is inside an element that is hidden, the built in `$(win
 
 If you say had the visibility of the `hidenElement` tied to a click event. You would re-stretch the image just after the `hidenElement` becomes visible again.
 	
-	$(window).click(function(){
-		hiddenElement.fadeIn(200);
-		element.trigger('stretch');
-	});
-
-Or to make sure it's only the image inside the `hiddenElement` that is re-stretched you could find it and run the trigger only on it.
+We would also want make sure it's only the image(s) inside the `hiddenElement` that are re-stretched, using the jQuery `find` function.
 
 	$(window).click(function(){
 		hiddenElement.fadeIn(200);
