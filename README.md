@@ -1,27 +1,27 @@
 # StretchED
 
-StretchED is at it's heart a simple jQuery image stretching plugin. 
+StretchED is at it's heart is a simple jQuery image stretching plugin. 
 
 However it also includes many more advanced features that may apply to some of the more unique situations that a web developer may encounter whist building a site.
 
 
 ## Setup
 
-To use the stretchED plugin you'll need to include jQuery and one of the stretchED javascript files
+To use the stretchED plugin you'll need to include jQuery and either `stretchED.js` or `stretchED.min.js`
 
 For example:
 
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script type='text/javascript' src='PATH_TO_DIRECTORY/stretchED.min.js'></script>
 
-Or if you are using Wordpress, which already includes Query:
+Or if you are using Wordpress, which already includes jQuery:
 
 	wp_enqueue_script( 'stretchED', get_template_directory_uri().'/PATH_TO_DIRECTORY/stretchED.js', array( 'jquery' ) );
 
 
 ## Usage
 
-By default the only thing that stretchED needs from you operate, is to be given the jQuery object of an element in the DOM. Any `<img>` that stretchED finds in this element will be stretched to cover the entire background of the element.
+By default the only thing that stretchED needs from you operate, is to be given the jQuery object of an element in the DOM. Any `<img>` tags that stretchED finds in this element will be stretched to cover the entire background of the element.
 
 The effect is similar to the CSS property `background-size: cover`
 
@@ -53,11 +53,13 @@ There are many option available when configuring the plugin args.
 
 **backgroundSize**
 
-> (*string*) Acts similarly to the 'cover' and 'contain' CSS `background-size` property. (*default*) `cover`
+> (*string*) Acts similarly to the CSS `background-size` property. Options are:
++ 'contain'
++ 'cover' (*default*)
 
 **imageSelector**
 
-> (*string*) By default this is set to `img`. This means the stretcher will stretch all image tags found in the container element. If you only need to effect certain images you can pass a CSS selector here single out specific image tags to stretch.
+> (*string*) By default this is set to `'img'`. This means the stretcher will stretch all `<img>` tags found in the container element. If you only need to effect certain images you can pass a CSS selector here single out specific image tags to stretch.
 
 **alignX**
 
@@ -141,8 +143,7 @@ We can set the container's padding to only cover a certain amount of its backgro
 
 ### Setting a max height for the stretched Image
 
-Changing the padding of elements like the example above is handy, but it will not quite help with this task. Instead for this we can assign a `maxHeight` to the 'stretcher' element. Below we are setting the amount of the image that can be visible to `100px` in height. The same can be done for `maxWidth`.
-
+Changing the padding of elements like the example above is handy, but it will not quite help with this task. Instead for this we can assign a `maxHeight` to the 'stretcher' element. This will only allow the `100px` of the image to be visible vertically. The same can be done for `maxWidth`.
 
 	element.stretchED({
 		stretcher: {
@@ -152,7 +153,7 @@ Changing the padding of elements like the example above is handy, but it will no
 
 ### Adding a breakpoint that changes the backgroundSize
 
-Below we are setting the `backgroundSize` to not not use the default `cover`, but instead use `contain`. Then we have added a breakpoint of `1024px`, which sets the `backgroundSize` to `cover`. This break point will activate when the browser width drops below `1024px`.
+Below we are setting the `backgroundSize` to not not use the default `cover`, but instead use `contain`. Then we have added a breakpoint of `1024px`, which sets the `backgroundSize` to `cover`. This break point will activate when the browser width drops below `1024px`. 
 
 	element.stretchED({
 		backgroundSize: 'contain',
@@ -163,6 +164,8 @@ Below we are setting the `backgroundSize` to not not use the default `cover`, bu
 		}
 	});
 
+You may alter any other of the configurable parameters listed here inside a breakpoint. Even another breakpoint... but that would just be crazy sauce! pffffft! breakpoinception indeed!
+
 
 ## Dependencies
 
@@ -171,3 +174,8 @@ This plugin is dependent on the following.
 - [jQuery](http://jquery.com/download/)
 
 
+## Compatibility
+
+Works on all major browsers.
+
+Tested down to Internet Explorer 7 ( those were some seriously good times... pause... naaaaat! )
