@@ -210,7 +210,7 @@ The HTML might look like this
 
 Because the `container` is inside an element that is hidden, the built in `$(window).resize()` trigger won't function until `hidenElement` is made visible again.
 
-If you say had the visibility of the `hidenElement` tied to a click event. You would re-stretch the image just after the `hidenElementz becomes visible again.
+If you say had the visibility of the `hidenElement` tied to a click event. You would re-stretch the image just after the `hidenElement` becomes visible again.
 	
 	$(window).click(function(){
 		hiddenElement.fadeIn(200);
