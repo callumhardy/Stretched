@@ -219,9 +219,7 @@ We would also want make sure it's only the image(s) inside the `hiddenElement` t
 		hiddenElement.find('.container').trigger('stretch');
 	});
 
-**Note:**
-
-If you are going to an element that has been stretchED, you should always wrap in in a parent element and hide that. Hiding the element that you've run stretchED on directly is a bad life choice.
+**Note:** If you are going to an element that has been stretchED, you should always wrap in in a parent element and hide that. Hiding the element that you've run stretchED on directly is a bad life choice.
 
 Also when using the `fadeIn`, `animate` or `show` jQuery functions it's best to re-stretch the image before the animation completes not after. Re-stretching after will result in a snap as the image jumps into its correct position. 
 
