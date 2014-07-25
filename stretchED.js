@@ -250,11 +250,10 @@ if (!Object.keys) {
 					$stretcher.append( $image );
 
 					//	Now we need to alter the src of the image by appending a unique GET var
-					$image.attr( "src", imageSrc );
-
 					//	TODO/Note: this has been removed from the above line because it was causing some weird bugs in IE 9
 					//	This is to force IE to stop caching images and run the .load() jQuery function 
 					//	imageSrc + "/?" + new Date().getTime()
+					$image.attr( "src", imageSrc );
 					
 					//	If the image has '0' width, it is most likely not loaded yet
 					if( $image.width() === 0 ) {
