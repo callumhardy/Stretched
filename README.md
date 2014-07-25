@@ -8,10 +8,12 @@ However it also includes many more advanced features that may apply to some of t
 - [Usage](#user-content-usage)
 	- [args parameters](#user-content-args-parameters)
 	- [Callbacks](#user-content-callbacks)
+- [Triggers](#user-content-triggers)
 - [Examples](#user-content-examples)
 	- [Covering only half of the container element](#user-content-covering-only-half-of-the-container-element)
-	- [Setting a max height for the stretched Image](#user-content-setting-a-max-height-for-the-stretched-image)
+	- [Setting a specific height for the stretched area](#user-content-setting-a-specific-height-for-the-stretched-area)
 	- [Adding a breakpoint that changes the backgroundSize](#user-content-adding-a-breakpoint-that-changes-the-backgroundsize)
+	- [Triggering image stretching when an element is un-hidden](#user-content-triggering-image-stretching-when-an-element-is-un-hidden)
 - [Dependencies](#user-content-dependencies)
 - [Compatibility](#user-content-compatibility)
 
@@ -160,13 +162,11 @@ We can set the container's padding to only cover a certain amount of its backgro
 		}
 	});
 
-### Setting a specific height for the stretched area
+### Setting a specific width for the stretched area
 
 Changing the padding of elements is handy. In the previous example, giving the container a padding of `50%` on the left effectively forces the stretcher element to become half the width of the container element. 
 
 However if you required the stretcher element to be a fixed width or height, you can assign the stretcher some CSS.
-
-
 
 	element.stretchED({
 		stretcher: {
@@ -177,6 +177,7 @@ However if you required the stretcher element to be a fixed width or height, you
 **Note:** Some caution should be taken as some CSS settings may stop the stretcher from displaying properly. Some CSS properties to avoid are:
 + zIndex
 + position
++ display
 
 ### Adding a breakpoint that changes the backgroundSize
 
@@ -195,13 +196,39 @@ You may alter any of the configurable parameters listed here inside a breakpoint
 
 ### Triggering image stretching when an element is un-hidden
 
-There are some circumstances where an element that has already been stretchED is hidden from the browser. The browser is then resized, after which the stretchED element is displayed again. The built in `$(window).resize()` trigger won't function in this case. To make sure the image assumes the correct dimensions when it is made visible again you must manually trigger the re-stretching of the element.
+There are some circumstances where an element that has already been stretchED is hidden from the browser. The browser is then resized, after which the stretchED element is displayed again, perhaps after a click event or something.
 
-	hiddenElement.fadeIn(200, function(){
+The HTML might look like this
+
+	<div id="hidenElement" style="display:none;">
+		<div class="container">
+			<div class="stretcher">
+				<img src="image.jpg" alt="">
+			</div>
+		</div>			
+	</div>
+
+Because the `container` is inside an element that is hidden, the built in `$(window).resize()` trigger won't function until `hidenElement` is made visible again.
+
+If you say had the visibility of the `hidenElement` tied to a click event. You would re-stretch the image just after the `hidenElementz becomes visible again.
+	
+	$(window).click(function(){
+		hiddenElement.fadeIn(200);
 		element.trigger('stretch');
 	});
 
-**Note:** In the above example the element that was initially stretchED and had the trigger called on was not itself hidden. It was inside a container element that was hidden. Hiding the element that you've run stretchED on is a bad life choice.
+Or to make sure it's only the image inside the `hiddenElement` that is re-stretched you could find it and run the trigger only on it.
+
+	$(window).click(function(){
+		hiddenElement.fadeIn(200);
+		hiddenElement.find('.container').trigger('stretch');
+	});
+
+**Note:**
+
+If you are going to an element that has been stretchED, you should always wrap in in a parent element and hide that. Hiding the element that you've run stretchED on directly is a bad life choice.
+
+Also when using the `fadeIn`, `animate` or `show` jQuery functions it's best to re-stretch the image before the animation completes not after. Re-stretching after will result in a snap as the image jumps into its correct position. 
 
 
 ## Dependencies
