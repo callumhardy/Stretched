@@ -67,24 +67,6 @@ if (!Object.keys) {
 		 * Options: 'contain', 'cover'( default )
 		 */
 		backgroundSize: 'cover',
-		
-		/**
-		 * padding
-		 * 
-		 * @type {Number/String} CSS style padding can be applied to the image for 'contain' image stretching only
-		 *
-		 * Both `px` and `%` can be passed in the traditional CSS format, eg: '30px 15% 50px' or '50px'
-		 */
-		padding: 0,
-
-		/**
-		 * stretcherPadding
-		 * 
-		 * @type {Number/String} CSS style padding can be applied to the stretcher element in both 'contain' and 'cover' image stretching
-		 *
-		 * Both `px` and `%` can be passed in the traditional CSS format, eg: '25% 120px' or '15%'
-		 */
-		stretcherPadding: 0,
 
 		/**
 		 * imageSelector
@@ -118,7 +100,38 @@ if (!Object.keys) {
 		 * 
 		 * @type {Object} Set initial CSS parameters for the stretcher element
 		 */
-		stretcher: {},
+		stretcher: {
+			/**
+			 * stretcher.padding
+			 * 
+			 * @type {Number/String} CSS style padding can be applied to the image for the `backgroundSize: 'contain'` only
+			 *
+			 * Both `px` and `%` can be passed in the traditional CSS format, eg: '30px 15% 50px' or '50px'
+			 *
+			 * Note: The effect of padding in the stretcher element is faked by resizing the image inside it. It will not applay actual CSS padding to the stretcher element
+			 */
+			padding: 0
+		},
+
+		/**
+		 * container
+		 * 
+		 * @type {Object} Set initial CSS parameters for the container element
+		 *
+		 * 
+		 */
+		container: {
+			/**
+			 * container.padding
+			 * 
+			 * @type {Number/String} CSS style padding can be applied to the container element in both `backgroundSize: 'contain'` and `backgroundSize: 'cover'`.
+			 *
+			 * Both `px` and `%` can be passed in the traditional CSS format, eg: '25% 120px' or '15%'
+			 *
+			 * Note: The effect of padding in the container element is faked by resizing the stretcher element inside it. It will not applay actual CSS padding to the container element
+			 */
+			padding: 0
+		},
 
 		/**
 		 * breakpoints
@@ -190,12 +203,6 @@ if (!Object.keys) {
 
 				//	If no images found then get out of here before something breaks!
 				if( $images.length < 1 ) return;
-
-				//	Setup container element zIndex
-				if( $container.css('z-index') === 'auto' )
-					$container.css({
-						zIndex: 0
-					});
 
 				//	Create an object to store elements in
 				var elements = {
@@ -351,6 +358,9 @@ if (!Object.keys) {
 			$stretcher = elem.stretcher.$;
 			$image = elem.image.$;
 
+			//	Callback: before
+			conf.before( elem.container, elem.image );
+
 			//	Are there any breakpoints set
 			if( Object.keys(conf.breakpoints).length > 0 ) {
 
@@ -372,10 +382,34 @@ if (!Object.keys) {
 
 			}
 
-			elem.stretcher.$.attr('style','');
+			//	Reset the container inline styles
+			//	this helps the breakpoint property function like most people would expect
+			$container.attr('style','');
+
+			//	Setup container element zIndex
+			if( $container.css('z-index') === 'auto' )
+				$container.css({
+					zIndex: 0
+				});
+
+			//	config CSS
+			if( typeof conf.container === 'object' ) {
+
+				$.each( conf.container, function( key, value ) {
+
+					if( key !== 'padding' )
+						$container.css( key, value );
+
+				});
+
+			}
+
+			//	Reset the stretcher inline styles
+			//	this helps the breakpoint property function like most people would expect
+			$stretcher.attr('style','');
 
 			//	Setup stretcher element
-			elem.stretcher.$.css({
+			$stretcher.css({
 				zIndex: -1,
 				overflow: 'hidden',
 				maxWidth: '',
@@ -389,17 +423,15 @@ if (!Object.keys) {
 
 				$.each( conf.stretcher, function( key, value ) {
 
-					$stretcher.css( key, value );
+					if( key !== 'padding' )
+						$stretcher.css( key, value );
 
 				});
 
 			}
 
-			//	Callback: before
-			conf.before( elem.container, elem.image );
-
 			//	Set the stretcher padding
-			self.calculatePadding( elem.stretcher, conf.stretcherPadding );
+			self.calculatePadding( elem.stretcher, conf.container.padding );
 
 			//	Size stretcher
 			var stretcherInfo = self.stretchToFill( elem.stretcher, elem.container );
@@ -422,7 +454,7 @@ if (!Object.keys) {
 			} else {
 
 				//	Set the image padding - to config padding
-				self.calculatePadding( elem.image, conf.padding );
+				self.calculatePadding( elem.image, conf.stretcher.padding );
 
 				//	Size image
 				self.stretchToContain( elem.image, elem.stretcher );
@@ -702,10 +734,6 @@ if (!Object.keys) {
 				maxHeight: 'none'
 			});
 		},
-
-		/*stretchPropertiesToWrap: function() {
-
-		},*/
 
 		stretchToFill: function( element, targetElement ) {
 
