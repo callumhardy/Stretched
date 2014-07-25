@@ -490,7 +490,7 @@ if (!Object.keys) {
 				//	runStretch after 50ms
 				resizing = setTimeout( function() {
 
-					self.runStretch();
+					//self.runStretch();
 
 				}, 50);
 			});

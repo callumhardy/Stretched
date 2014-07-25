@@ -139,6 +139,15 @@ I've never had to use these in any situation personally. But I put a few callbac
 > + *elements* (*object*) An object of DOM elements that the stretcher will be manipulating.
 
 
+## Triggers
+
+**stretch**
+
+> calling the `stretch` trigger will run the stretching part of the plugin again on the targeted element
+
+	element.trigger('stretch');
+
+
 ## Examples
 
 ### Covering only half of the container element
@@ -183,6 +192,16 @@ Below we are setting the `backgroundSize` to not not use the default `cover`, bu
 	});
 
 You may alter any of the configurable parameters listed here inside a breakpoint. Even another breakpoint... but that would just be crazy sauce! pffffft! breakpoinception indeed!
+
+### Triggering image stretching when an element is un-hidden
+
+There are some circumstances where an element that has already been stretchED is hidden from the browser. The browser is then resized, after which the stretchED element is displayed again. The built in `$(window).resize()` trigger won't function in this case. To make sure the image assumes the correct dimensions when it is made visible again you must manually trigger the re-stretching of the element.
+
+	hiddenElement.fadeIn(200, function(){
+		element.trigger('stretch');
+	});
+
+**Note:** In the above example the element that was initially stretchED and had the trigger called on was not itself hidden. It was inside a container element that was hidden. Hiding the element that you've run stretchED on is a bad life choice.
 
 
 ## Dependencies
