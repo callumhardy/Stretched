@@ -4,7 +4,6 @@ StretchED is at it's heart a simple jQuery image stretching plugin.
 
 However it also includes many more advanced features that may apply to some of the more unique situations that a web developer may encounter whist building a site.
 
----
 
 ## Setup
 
@@ -19,7 +18,6 @@ Or if you are using Wordpress, which already includes Query:
 
 	wp_enqueue_script( 'stretchED', get_template_directory_uri().'/PATH_TO_DIRECTORY/stretchED.js', array( 'jquery' ) );
 
----
 
 ## Usage
 
@@ -128,7 +126,6 @@ I've never had to use these in any situation personally. But I put a few callbac
 
 > + *elements* (*object*) An object of DOM elements that the stretcher will be manipulating.
 
----
 
 ## Examples
 
@@ -166,7 +163,6 @@ Below we are setting the `backgroundSize` to not not use the default `cover`, bu
 		}
 	});
 
----
 
 ## Dependencies
 
