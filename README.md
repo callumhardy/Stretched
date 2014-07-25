@@ -11,7 +11,7 @@ However it also includes many more advanced features that may apply to some of t
 	- [Triggers](#user-content-triggers)
 - [Examples](#user-content-examples)
 	- [Covering only half of the container element](#user-content-covering-only-half-of-the-container-element)
-	- [Setting a specific height for the stretched area](#user-content-setting-a-specific-height-for-the-stretched-area)
+	- [Setting a specific width for the stretched area](#user-content-setting-a-specific-width-for-the-stretched-area)
 	- [Adding a breakpoint that changes the backgroundSize](#user-content-adding-a-breakpoint-that-changes-the-backgroundsize)
 	- [Triggering image stretching when an element is un-hidden](#user-content-triggering-image-stretching-when-an-element-is-un-hidden)
 - [Dependencies](#user-content-dependencies)
