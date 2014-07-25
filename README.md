@@ -164,7 +164,7 @@ We can set the container's padding to only cover a certain amount of its backgro
 
 ### Setting a specific width for the stretched area
 
-Changing the padding of elements is handy. In the previous example, giving the container a padding of `50%` on the left effectively forces the stretcher element to become half the width of the container element. 
+Changing the padding of element is handy. In the previous example, giving the container a padding of `50%` on the left effectively forced the stretcher element to become half the width of the container element. 
 
 However if you required the stretcher element to be a fixed width or height, you can assign the stretcher some CSS.
 
@@ -181,7 +181,7 @@ However if you required the stretcher element to be a fixed width or height, you
 
 ### Adding a breakpoint that changes the backgroundSize
 
-Below we are setting the `backgroundSize` to not not use the default `cover`, but instead use `contain`. Then we have added a breakpoint of `1024px`, which sets the `backgroundSize` to `cover`. This break point will activate when the browser width drops below `1024px`. 
+Below we are setting the `backgroundSize` to not use the default `cover`, but instead use `contain`. Then we have added a breakpoint of `1024px`, which sets the `backgroundSize` to `cover`. This break point will activate when the browser width drops below `1024px`. 
 
 	element.stretchED({
 		backgroundSize: 'contain',
@@ -219,7 +219,7 @@ We would also want make sure it's only the image(s) inside the `hiddenElement` t
 		hiddenElement.find('.container').trigger('stretch');
 	});
 
-**Note:** If you are going to an element that has been stretchED, you should always wrap in in a parent element and hide that. Hiding the element that you've run stretchED on directly is a bad life choice.
+**Note:** If you are going to hide an element that has been stretchED, you should always wrap in in a parent element and hide that. Hiding the element that you've run stretchED on directly is a bad life choice.
 
 Also when using the `fadeIn`, `animate` or `show` jQuery functions it's best to re-stretch the image before the animation completes not after. Re-stretching after will result in a snap as the image jumps into its correct position. 
 
