@@ -4,17 +4,16 @@ StretchED is at it's heart is a simple jQuery image stretching plugin.
 
 However it also includes many more advanced features that may apply to some of the more unique situations that a web developer may encounter whist building a site.
 
-- [StretchED](#user-content-stretched)
-	- [Setup](#user-content-setup)
-	- [Usage](#user-content-usage)
-		- [args parameters](#user-content-args-parameters)
-		- [Callbacks](#user-content-callbacks)
-	- [Examples](#user-content-examples)
-		- [Covering only half of the container element](#user-content-covering-only-half-of-the-container-element)
-		- [Setting a max height for the stretched Image](#user-content-setting-a-max-height-for-the-stretched-image)
-		- [Adding a breakpoint that changes the backgroundSize](#user-content-adding-a-breakpoint-that-changes-the-backgroundsize)
-	- [Dependencies](#user-content-dependencies)
-	- [Compatibility](#user-content-compatibility)
+- [Setup](#user-content-setup)
+- [Usage](#user-content-usage)
+	- [args parameters](#user-content-args-parameters)
+	- [Callbacks](#user-content-callbacks)
+- [Examples](#user-content-examples)
+	- [Covering only half of the container element](#user-content-covering-only-half-of-the-container-element)
+	- [Setting a max height for the stretched Image](#user-content-setting-a-max-height-for-the-stretched-image)
+	- [Adding a breakpoint that changes the backgroundSize](#user-content-adding-a-breakpoint-that-changes-the-backgroundsize)
+- [Dependencies](#user-content-dependencies)
+- [Compatibility](#user-content-compatibility)
 
 ## Setup
 
