@@ -8,7 +8,7 @@ However it also includes many more advanced features that may apply to some of t
 - [Usage](#user-content-usage)
 	- [args parameters](#user-content-args-parameters)
 	- [Callbacks](#user-content-callbacks)
-- [Triggers](#user-content-triggers)
+	- [Triggers](#user-content-triggers)
 - [Examples](#user-content-examples)
 	- [Covering only half of the container element](#user-content-covering-only-half-of-the-container-element)
 	- [Setting a specific height for the stretched area](#user-content-setting-a-specific-height-for-the-stretched-area)
@@ -141,7 +141,7 @@ I've never had to use these in any situation personally. But I put a few callbac
 > + *elements* (*object*) An object of DOM elements that the stretcher will be manipulating.
 
 
-## Triggers
+### Triggers
 
 **stretch**
 
