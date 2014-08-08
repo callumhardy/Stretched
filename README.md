@@ -1,6 +1,6 @@
-# StretchED
+# Stretched
 
-StretchED is at it's heart is a simple jQuery image stretching plugin. 
+Stretched is at it's heart is a simple jQuery image stretching plugin. 
 
 However it also includes many more advanced features that may apply to some of the more unique situations that a web developer may encounter whist building a site.
 
