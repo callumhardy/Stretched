@@ -19,21 +19,21 @@ However it also includes many more advanced features that may apply to some of t
 
 ## Setup
 
-To use the stretchED plugin you'll need to include jQuery and either `stretchED.js` or `stretchED.min.js`
+To use the stretched plugin you'll need to include jQuery and either `stretched.js` or `stretched.min.js`
 
 For example:
 
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script type='text/javascript' src='PATH_TO_DIRECTORY/stretchED.min.js'></script>
+	<script type='text/javascript' src='PATH_TO_DIRECTORY/stretched.min.js'></script>
 
 Or if you are using Wordpress, which already includes jQuery:
 
-	wp_enqueue_script( 'stretchED', get_template_directory_uri().'/PATH_TO_DIRECTORY/stretchED.js', array( 'jquery' ) );
+	wp_enqueue_script( 'stretched', get_template_directory_uri().'/PATH_TO_DIRECTORY/stretched.js', array( 'jquery' ) );
 
 
 ## Usage
 
-By default the only thing that stretchED needs from you operate, is to be given the jQuery object of an element or elements in the DOM. Any `<img>` tags that stretchED finds in the element(s) will be stretched to cover the entire background of the element.
+By default the only thing that stretched needs from you operate, is to be given the jQuery object of an element or elements in the DOM. Any `<img>` tags that stretched finds in the element(s) will be stretched to cover the entire background of the element.
 
 The effect is similar to the CSS property `background-size: cover`
 
@@ -47,9 +47,9 @@ Javascript:
 
 	var element = $('#container');
 
-	element.stretchED(args);
+	element.stretched(args);
 
-After stretchED has run it will have wrapped the image in a `div` with the class 'stretcher'. Both the 'stretcher' and image will have several inline CSS styles applied
+After stretched has run it will have wrapped the image in a `div` with the class 'stretcher'. Both the 'stretcher' and image will have several inline CSS styles applied
 
 **element**
 
@@ -57,7 +57,7 @@ After stretchED has run it will have wrapped the image in a `div` with the class
 
 **args**
 
-> (*optional*)(*object*) A JavaScript object of parameters that allows you to configure the actions of the `stretchED()` jQuery function
+> (*optional*)(*object*) A JavaScript object of parameters that allows you to configure the actions of the `stretched()` jQuery function
 
 ### args parameters
 
@@ -156,7 +156,7 @@ I've never had to use these in any situation personally. But I put a few callbac
 
 We can set the container's padding to only cover a certain amount of its background. In the example below we are setting the container to have `50%` padding on the left. The plugin will then only allow the image to cover the right hand side of the container.
 
-	element.stretchED({
+	element.stretched({
 		container: {
 			padding: '0 0 0 50%'
 		}
@@ -168,7 +168,7 @@ Changing the padding of element is handy. In the previous example, giving the co
 
 However if you required the stretcher element to be a fixed width or height, you can assign the stretcher some CSS.
 
-	element.stretchED({
+	element.stretched({
 		stretcher: {
 			width: 100
 		}
@@ -183,7 +183,7 @@ However if you required the stretcher element to be a fixed width or height, you
 
 Below we are setting the `backgroundSize` to not use the default `cover`, but instead use `contain`. Then we have added a breakpoint of `1024px`, which sets the `backgroundSize` to `cover`. This break point will activate when the browser width drops below `1024px`. 
 
-	element.stretchED({
+	element.stretched({
 		backgroundSize: 'contain',
 		breakpoints: {
 			1024: {
@@ -196,7 +196,7 @@ You may alter any of the configurable parameters listed here inside a breakpoint
 
 ### Triggering image stretching when an element is un-hidden
 
-There are some circumstances where an element that has already been stretchED is hidden from the browser. The browser is then resized, after which the stretchED element is displayed again, perhaps after a click event or something.
+There are some circumstances where an element that has already been stretched is hidden from the browser. The browser is then resized, after which the stretched element is displayed again, perhaps after a click event or something.
 
 The HTML might look like this
 
@@ -219,7 +219,7 @@ We would also want make sure it's only the image(s) inside the `hiddenElement` t
 		hiddenElement.find('.container').trigger('stretch');
 	});
 
-**Note:** If you are going to hide an element that has been stretchED, you should always wrap in in a parent element and hide that. Hiding the element that you've run stretchED on directly is a bad life choice.
+**Note:** If you are going to hide an element that has been stretched, you should always wrap in in a parent element and hide that. Hiding the element that you've run stretched on directly is a bad life choice.
 
 Also when using the `fadeIn`, `animate` or `show` jQuery functions it's best to re-stretch the image before the animation completes not after. Re-stretching after will result in a snap as the image jumps into its correct position. 
 
