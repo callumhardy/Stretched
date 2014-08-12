@@ -40,7 +40,7 @@ The effect is similar to the CSS property `background-size: cover`
 HTML:
 
 	<div id="container">
-		<img href="image.jpg"/>
+		<img src="image.jpg"/>
 	</div>
 
 Javascript:
