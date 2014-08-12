@@ -53,8 +53,8 @@ if (!Object.keys) {
 		windowHeight = $window.innerHeight();
 
 	/**
-	 * The default arguments for the stretchED function
-	 * These can be overridden by passing config arguments through the `.stretchED( config )` function
+	 * The default arguments for the stretched function
+	 * These can be overridden by passing config arguments through the `.stretched( config )` function
 	 * @type {Object}
 	 */
 	var defaultArgs = {
@@ -181,7 +181,7 @@ if (!Object.keys) {
 	 * @param  {Object}		configArgs		Configurable arguments can be passed to override the defaults
 	 * @return {Object}						The jQuery object that this function is run on
 	 */
-	$.fn.stretchED = function( configArgs )
+	$.fn.stretched = function( configArgs )
 	{
 		//	Merge/Overwrite the default and config arguments
 		var config = $.extend( {}, defaultArgs, configArgs );
@@ -309,7 +309,7 @@ if (!Object.keys) {
 		//	return the original jQuery object
 		return $containers;
 
-	};/* $.fn.stretchED */
+	};/* $.fn.stretched */
 
 
 
