@@ -495,6 +495,13 @@ if (!Object.keys) {
 				}, 50);
 			});
 
+			//	Resize when window tab is focussed
+			//	Trying to stop a bug that occasionally appears when another tab is focussed when the browser is resized
+			$window.on( 'focus', function()
+			{
+				self.runStretch();
+			});
+
 			//	Trigger Event
 			self.elements.container.$.on( 'stretch', function() {
 
