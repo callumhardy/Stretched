@@ -1,11 +1,23 @@
 /**
- * Stretched Plugin
+ *   
+ *    ___    ___     ___     ___    ___     ___     ___     ___     ___   
+ *   /\  \  /\  \   /\  \   /\  \  /\  \   /\  \   /\__\   /\  \   /\  \  
+ *  /::\  \ \:\  \ /::\  \ /::\  \ \:\  \ /::\  \ /:/__/_ /::\  \ /::\  \ 
+ * /\:\:\__\/::\__/::\:\__/::\:\__\/::\__/:/\:\__/::\/\__/::\:\__/:/\:\__\
+ * \:\:\/__/:/\/__\;:::/  \:\:\/  /:/\/__\:\ \/__\/\::/  \:\:\/  \:\/:/  /
+ *  \::/  /\/__/   |:\/__/ \:\/  /\/__/   \:\__\   /:/  / \:\/  / \::/  / 
+ *   \/__/          \|__|   \/__/          \/__/   \/__/   \/__/   \/__/  
  *
+ * Stretched Plugin
+ * 
  * This plugin can be used to stretch images inside of a container element in a variety of different ways and allows you to change the way the image is stretched as the window width decreases for responsive designs
  *
  * Author: Callum Hardy <callum@ed.com.au>
  *
  * Version 1.0.2
+ *
+ * ascii smisome1
+ * 
  */
 
 /**
