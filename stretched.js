@@ -14,9 +14,9 @@
  *
  * Author: Callum Hardy <callum@ed.com.au>
  *
- * Version 1.0.2
+ * Version: 1.0.2
  *
- * ascii smisome1
+ * ascii: smisome1
  * 
  */
 
@@ -425,8 +425,6 @@ if (!Object.keys) {
 			//	Size stretcher
 			var stretcherInfo = self.stretchToFill( elem.stretcher, elem.container );
 
-			console.log("stretcher: "+stretcherInfo);
-
 			//	Cover
 			if( conf.backgroundSize === 'cover' ) {
 
@@ -447,6 +445,9 @@ if (!Object.keys) {
 
 				//	Size image
 				self.stretchToContain( elem.image, elem.stretcher );
+
+				//	Image Alignment
+				self.imageAlignment();
 
 			}
 
@@ -762,11 +763,14 @@ if (!Object.keys) {
 			$targetElem = targetElement.$;
 
 			//	Target element data
-			targetElement.ratio = $targetElem.width() / $targetElem.height();
+			var targetWidth = $targetElem.width() || $targetElem.attr('width'),
+				targetHeight = $targetElem.height() || $targetElem.attr('height');
+
+			targetElement.ratio = targetWidth / targetHeight;
 			targetElement.innerWidth = $targetElem.innerWidth() - element.padding.right - element.padding.left;
 			targetElement.innerHeight = $targetElem.innerHeight() - element.padding.top - element.padding.bottom;
 			targetElement.innerRatio = targetElement.innerWidth / targetElement.innerHeight;
-
+			
 			//	Stretch the element to full width and height of the targetElem
 			$elem.css({
 				position: 'absolute',
