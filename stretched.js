@@ -423,11 +423,7 @@ if (!Object.keys) {
 			self.calculatePadding( elem.stretcher, conf.container.padding );
 
 			//	Size stretcher
-<<<<<<< HEAD
-			var stretcherInfo = self.stretchToFill( elem.stretcher, elem.container );
-=======
 			self.stretchToFill( elem.stretcher, elem.container );
->>>>>>> FETCH_HEAD
 
 			//	Cover
 			if( conf.backgroundSize === 'cover' ) {
