@@ -279,8 +279,8 @@ if (!Object.keys) {
 
 							//	Save the naturalWidth and naturalHeight
 							//	Note: this attribute already exists in jQuery but we must make it manually to support, you probably guessed it... IE8 and below
-							elements.image.naturalWidth = elements.image.$.width();
-							elements.image.naturalHeight = elements.image.$.height();
+							elements.image.naturalWidth = elements.image.$.attr('width') || elements.image.$.width();
+							elements.image.naturalHeight = elements.image.$.attr('height') || elements.image.$.height();
 							elements.image.ratio = elements.image.naturalWidth / elements.image.naturalHeight;
 
 							//	Create the stretched object
@@ -301,8 +301,8 @@ if (!Object.keys) {
 
 						//	Save the naturalWidth and naturalHeight
 						//	Note: this attribute already exists in jQuery but we must make it manually to support, you probably guessed it... IE8 and below
-						elements.image.naturalWidth = elements.image.$.width();
-						elements.image.naturalHeight = elements.image.$.height();
+						elements.image.naturalWidth = elements.image.$.attr('width') || elements.image.$.width();
+						elements.image.naturalHeight = elements.image.$.attr('height') || elements.image.$.height();
 						elements.image.ratio = elements.image.naturalWidth / elements.image.naturalHeight;
 
 						//	Create the stretched object
@@ -407,7 +407,7 @@ if (!Object.keys) {
 
 			//	Reset the stretcher inline styles
 			//	this helps the breakpoint property function like most people would expect
-			$stretcher.attr('style','');
+			// $stretcher.attr('style','');
 
 			//	Setup stretcher element
 			$stretcher.css({
@@ -423,7 +423,11 @@ if (!Object.keys) {
 			self.calculatePadding( elem.stretcher, conf.container.padding );
 
 			//	Size stretcher
+<<<<<<< HEAD
 			var stretcherInfo = self.stretchToFill( elem.stretcher, elem.container );
+=======
+			self.stretchToFill( elem.stretcher, elem.container );
+>>>>>>> FETCH_HEAD
 
 			//	Cover
 			if( conf.backgroundSize === 'cover' ) {
@@ -796,4 +800,3 @@ if (!Object.keys) {
 	};
 
 })( jQuery, window, document );
-
